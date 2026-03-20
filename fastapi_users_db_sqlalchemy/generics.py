@@ -32,6 +32,8 @@ class GUID(TypeDecorator):  # pragma: no cover
             return value
         elif dialect.name == "postgresql":
             return str(value)
+        elif dialect.name == "sqlite":
+            return str(value).replace("-", "")
         else:
             if not isinstance(value, uuid.UUID):
                 return str(uuid.UUID(value))
